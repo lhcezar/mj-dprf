@@ -1,0 +1,32 @@
+!!!5
+html
+  head
+    title= title
+
+    // Viewport mobile tag for sensible mobile support
+    meta(name="viewport",content="width=device-width, initial-scale=1, maximum-scale=1")
+    link(rel="stylesheet", media="screen", href="/vendor/bootstrap/css/bootstrap.min.css")
+  body
+    header.navbar.navbar-inverse.navbar-fixed-top.bs-docs-nav(role="banner")
+      .container
+        nav.collapse.navbar-collapse.bs-navbar-collapse(role="navigation")
+          ul.nav.navbar-nav
+            li
+              a(href='/informacoes') Informações
+            li
+              a(href='/inicial') Inicial
+    .container
+      block body
+    
+    script(type="text/javascript", src="/vendor/jquery/jquery-2.0.3.min.js")
+    script(type="text/javascript", src="/vendor/bootstrap/js/bootstrap.js")
+    // A few key dependencies, linked in order
+
+    // Bring in the socket.io client
+    script(type="text/javascript", src="/js/socket.io.js")
+
+    // then beef it up with some convenience logic for talking to Sails.js'
+    script(type="text/javascript", src="/js/sails.io.js")
+
+    // listen on socket.io for incoming messages
+    script(type="text/javascript", src="/js/app.js")
