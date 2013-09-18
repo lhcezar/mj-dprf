@@ -7,10 +7,6 @@ OcorrenciaPessoaController =
       return
 
   ocorrencia: (req, res)->
-      cfg = 
-          layout: "layout"
-          name: "bar"
-          title: "Ocorrências"
-      return res.view cfg
+    return res.view data: ""
 
 module.exports = OcorrenciaPessoaController

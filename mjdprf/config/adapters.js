@@ -16,7 +16,7 @@ module.exports.adapters = {
 
   // If you leave the adapter config unspecified 
   // in a model definition, 'default' will be used.
-  'default': 'mongo',
+  'default': 'postgresql',
 
   // In-memory adapter for DEVELOPMENT ONLY
 
@@ -34,6 +34,16 @@ module.exports.adapters = {
   // (data IS preserved when the server shuts down)
   disk: {
     module: 'sails-disk'
+  },
+
+  postgresql: {
+    module: 'sails-postgresql',
+    database: 'acidentes',
+    user: 'postgres',
+    password: 'postgres',
+    host: 'localhost',
+    port: 5432,
+    pool: false
   },
 
   // MySQL is the world's most popular relational database.

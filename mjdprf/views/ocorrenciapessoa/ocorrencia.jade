@@ -1,4 +1,58 @@
 extends ../layout
 block body
+
   .container
-    h1=name
+    .row
+      .col-xs-6.col-sm-6.col-md-4
+        form(role="form")
+          h2= data.lbrid
+            | Relatar ocorrência
+          input.form-control.input-lg(placeholder="Local")
+          textarea.form-control(rows="3", placeholder="Descrição")
+          button.btn.btn-primary.btn-lg
+            | enviar
+      .col-xs-12.col-sm-6.col-md-8
+        h2 Localização
+        #map(style="height:280px;")
+
+    :coffee
+
+      ufcor = (sg)->
+        sigla =
+          'NE': '#ddee66'
+          'SE': '#f6f6f6'
+        return sigla[sg]
+
+      formata_regiao = (f)->
+        return {
+          dashArray: '3'
+          weight: 2
+          color: 'gray'
+          fillColor: ufcor f.properties.SIGLA
+        }
+
+      w =
+        limit: 20
+        where:
+          lbrlongitude:
+            "not": 'null'
+          lbruf: "DF"
+
+      osmurl="http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      osmcloud = "http://{s}.tile.cloudmade.com/#{apikey}/997/256/{z}/{x}/{y}.png"
+      
+      # registro no cloudmade
+      apikey = "7e01a6d95d0d448f9b41e9820fe0be3d"
+
+      map = L.map('map').setView [-15.94, -47.84], 4
+
+      mapProps = 
+        attribution: "Map data: OpenStreetMap"
+        minZoom: 1
+        maxZoon: 12
+
+      L.tileLayer(osmurl, mapProps).addTo(map)
+      L.geoJson(regioes, style: formata_regiao).addTo(map)
+  
+      $.post '/local/find', w, (r)->
+        L.marker([i.lbrlatitude.trim(), i.lbrlongitude.trim()]).addTo map for i in r
