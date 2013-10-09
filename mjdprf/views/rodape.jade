@@ -1,18 +1,25 @@
 .ui.divider
-.ui.three.column.grid.footer
-  .equal.height.row
-    .column
-      | Campanhas*:
-      p
-        a(href="http://naofoiacidente.org")
-          | Não Foi Acidente
-      p
-        a(href="http://paradapelavida.com.br")
-          | Parada Pela Vida
-      p
-        a(href="http://www.roadsafetyfund.org/")
-          | Road Safety Fund
-    .column
-      | Realização:
-    .column
-      | Legal
+.footer
+  .container
+    .row
+      .col-sm-4
+        h5 Outras campanhas(*):
+        ul.list-unstyled
+          li
+            a(href="http://naofoiacidente.org")
+              | Não Foi Acidente
+          li
+            a(href="http://paradapelavida.com.br")
+              | Parada Pela Vida
+          li
+            a(href="http://www.roadsafetyfund.org/")
+              | Road Safety Fund
+        small Não relacionadas com este projeto
+      .col-sm-4
+        h5 Links úteis:
+        ul
+          li DNIT
+          li Polícia Rodoviária Federal
+          li Ministério da Justiça
+      .col-sm-4
+        | Legal
