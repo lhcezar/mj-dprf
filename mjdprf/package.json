@@ -21,5 +21,8 @@
   "main": "app.js",
   "repository": "",
   "author": "",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "grunt-contrib-coffee": "~0.7.0"
+  }
 }

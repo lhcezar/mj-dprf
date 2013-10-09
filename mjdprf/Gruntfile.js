@@ -132,6 +132,7 @@ module.exports = function (grunt) {
   grunt.loadTasks(depsPath + '/grunt-contrib-uglify/tasks');
   grunt.loadTasks(depsPath + '/grunt-contrib-cssmin/tasks');
   grunt.loadTasks(depsPath + '/grunt-contrib-less/tasks');
+  grunt.loadNpmTasks('grunt-contrib-coffee');
 
   // Project configuration.
   grunt.initConfig({
@@ -220,6 +221,17 @@ module.exports = function (grunt) {
       dist: {
         src: ['.tmp/public/concat/production.css'],
         dest: '.tmp/public/min/production.css'
+      }
+    },
+
+    coffee: {
+      dev: {
+        expand: true,
+        flatten: true,
+        cwd: 'assets/linker/',
+        src: ['*.coffee'],
+        dest: '.tmp/public/linker/js/',
+        ext: '.js'
       }
     },
 
@@ -396,6 +408,7 @@ module.exports = function (grunt) {
     'clean:dev',
     'jst:dev',
     'less:dev',
+    'coffee:dev',
     'copy:dev'
   ]);
 

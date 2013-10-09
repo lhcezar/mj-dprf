@@ -6,7 +6,18 @@ html
     // Viewport mobile tag for sensible mobile support
     meta(name="viewport",content="width=device-width, initial-scale=1, maximum-scale=1")
     link(rel="stylesheet", media="screen", href="/vendor/bootstrap/css/bootstrap.min.css")
+    link(rel="stylesheet", media="screen", href="/vendor/bootstrap/css/bootstrap-theme.min.css")
     link(rel="stylesheet", media="screen", href="/vendor/leaflet/leaflet.css")
+
+    //link(href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Open+Sans:300italic,400,300,700", rel="stylesheet", type="text/css")
+    //link(rel="stylesheet", media="screen", href="/vendor/semantic-ui/packaged/css/semantic.min.css")
+    link(rel="stylesheet", media="screen", href="/styles/app.css", type="text/css/")
+    //link(rel="stylesheet", media="screen", href="/vendor/semantic-ui/minified/collections/menu.min.css")
+    //link(rel="stylesheet", media="screen", href="/vendor/semantic-ui/minified/elements/button.min.css")
+    //link(rel="stylesheet", media="screen", href="/vendor/semantic-ui/minified/elements/basic.min.css")
+    //link(rel="stylesheet", media="screen", href="/vendor/semantic-ui/minified/elements/icon.min.css")
+    // link(rel="stylesheet", media="screen", href="/vendor/semantic-ui/minified/elements/image.min.css")
+
     script(type="text/javascript", src="/vendor/leaflet/leaflet.js")
     // Bring in the socket.io client
     script(type="text/javascript", src="/js/socket.io.js")
@@ -16,19 +27,42 @@ html
     script(type="text/javascript", src="/js/app.js")
 
     script(type="text/javascript", src="/vendor/jquery/jquery-2.0.3.min.js")
+
+    script(type="text/javascript", src="/vendor/semantic-ui/packaged/javascript/semantic.min.js")
     script(type="text/javascript", src="/vendor/rodovias.js")
     script(type="text/javascript", src="/gis/regioes.js")
   body
-    nav.collapse.navbar-collapse.navbar-inverse(role="navigation")
-      ul.nav.navbar-nav
-        li
-          a(href='/informacoes') Informações
-        li
-          a(href='/inicial') #{i18n("Inicial")}
-    block body
-    
-    script(type="text/javascript", src="/vendor/bootstrap/js/bootstrap.js")
+    .container
+      header.navbar.navbar-inverse.navbar-default(role="banner")
+        .navbar-header
+          button.navbar-toggle(type="button", "data-toggle"="collapse", "data-target"=".navbar-ex1-collapse")
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href="/")
+            img(src="/images/br.png")    
+            |   RODOVIA SEGURA
+        .collapse.navbar-collapse.navbar-ex1-collapse
+          ul.nav.navbar-nav.navbar-right
+            li.active
+              a(href="/inicial") #{i18n("Buscar")}
+            li
+              a(href="Mapa") #{i18n("Mapa")}
+            li
+              a(href="/inicial") #{i18n("Inicial")}
+            li
+              a(href="Mapa") #{i18n("")}
+            li
+              a(href="/inicial", "data-container"="body", "data-toggle"="popover", "data-placement"="bottom", "data-content"="Informações sore o site", "data-original-title" title) #{i18n("Sobre")}
+            li
+              a(href="Mapa") #{i18n("Desafio")}
+
+    .container
+      block body
+      include rodape
+    script(type="text/javascript", src="/vendor/bootstrap/js/bootstrap.min.js")
     // A few key dependencies, linked in order
-
-
-  
+    // SCRIPTS
+    script(type="text/javascript", src="/linker/js/foo.js")
+    script(type="text/javascript", src="/linker/js/ocorrencias.js")
+    // SCRIPTS END

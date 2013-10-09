@@ -1,19 +1,19 @@
 extends ../layout
 block body
 
-  .container
+  .jumbotron
     .row
-      .col-xs-6.col-sm-6.col-md-4
+      .col-sm-6.col-sm-offset-3
+        img.img-responsive(src="/images/rodovia-segura.png")
+    .row
+      .col-sm-6.col-sm-offset-3
         form(role="form")
-          h2= data.lbrid
-            | Relatar ocorrência
-          input.form-control.input-lg(placeholder="Local")
-          textarea.form-control(rows="3", placeholder="Descrição")
-          button.btn.btn-primary.btn-lg
-            | enviar
-      .col-xs-12.col-sm-6.col-md-8
-        h2 Localização
-        #map(style="height:280px;")
+          .input-group.input-group-lg
+            input.form-control(id="search", placeholder="Informe a Rodovia", type="text")
+            span.input-group-btn
+              button.btn.btn-default.glyphicon.glyphicon-search(type="button")
+
+      //#map(style="height:280px;")
 
     :coffee
 
@@ -51,7 +51,7 @@ block body
         minZoom: 1
         maxZoon: 12
 
-      L.tileLayer(osmurl, mapProps).addTo(map)
+      # L.tileLayer(osmurl, mapProps).addTo(map)
       L.geoJson(regioes, style: formata_regiao).addTo(map)
   
       $.post '/local/find', w, (r)->

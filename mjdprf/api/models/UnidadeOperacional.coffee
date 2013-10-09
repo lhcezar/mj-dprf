@@ -1,0 +1,20 @@
+module.exports =
+  attributes:
+    uniid: 'integer'
+    uniunidade: 'string'
+    unilotacao: 'string'
+    unisigla: 'string'
+    unittucodigo: 'string'
+    uniunidaderesponsavel: 'string'
+    unidenominacao: 'string'
+    uniendereco: 'string'
+    unimunicipio: 'string'
+    unicep: 'string'
+    unitelefone: 'string'
+    uniemail: 'string'
+    unilocal: 'string'
+    unilatitude: 'string'
+    unilongitude: 'string'
+    unihelicoptero: 'string'
+    unitexto: 'string'
+
