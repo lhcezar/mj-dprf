@@ -7,11 +7,12 @@ block body
          img.img-responsive(src="/images/rodovia-segura.png", style="margin: 0 auto;")
     .row
       .col-sm-6.col-sm-offset-3
-        form(role="form")
-          .input-group.input-group-lg
-            input.form-control(id="search", placeholder="Informe a Rodovia", type="text")
-            span.input-group-btn
-              button.btn.btn-default.glyphicon.glyphicon-search(type="button")
+        form.input-group.input-group-lg(role="form")
+          input.form-control(id="search", placeholder="Informe a Rodovia", type="text", "data-provide"="typehead", autocomplete="off", autofocus)
+          span.input-group-btn
+            button#busca.btn.btn-default(type="button")
+              i.glyphicon.glyphicon-search
+            //button#busca.btn.btn-default(type="button") buscar
 
       //#map(style="height:280px;")
 

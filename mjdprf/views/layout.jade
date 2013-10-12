@@ -29,7 +29,7 @@ html
 
     script(type="text/javascript", src="/vendor/jquery/jquery-2.0.3.min.js")
 
-    script(type="text/javascript", src="/vendor/semantic-ui/packaged/javascript/semantic.min.js")
+    //script(type="text/javascript", src="/vendor/semantic-ui/packaged/javascript/semantic.min.js")
     script(type="text/javascript", src="/vendor/rodovias.js")
     script(type="text/javascript", src="/gis/regioes.js")
   body
@@ -52,15 +52,16 @@ html
             li
               a(href="/inicial") #{i18n("Inicial")}
             li
-              a(href="Mapa") #{i18n("")}
+              a(href="Mapa") #{i18n("Ocorrências")}
             li
-              a(href="#", "data-container"="body", "data-toggle"="popover", "data-placement"="bottom", title "data-content"="Informações sore o site", "data-original-title"="") #{i18n("Sobre")}
+              a(href="#", "data-container"="body", "data-toggle"="popover", "data-placement"="bottom", title "data-content"="Responsáveis pelo desenvolvimento, origem dos dados e repositórios podem ser visualizados a partir deste link", "data-original-title"="Informações sobre o site'") #{i18n("Sobre")}
             li
               a(href="Mapa") #{i18n("Desafio")}
 
     .container
       block body
       include rodape
+ 
     script(type="text/javascript", src="/vendor/bootstrap/js/bootstrap.min.js")
     script(type="text/javascript", src="/vendor/typeahead.min.js")
     // A few key dependencies, linked in order
