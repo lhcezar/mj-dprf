@@ -78,10 +78,6 @@ body {
   }
 }
 
-#busca{
-    vertical-align: top;
-}
-
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   /* Remove the padding we set earlier */
@@ -153,6 +149,7 @@ body {
 }
 .tt-dropdown-menu {
   width: 100%;
+  font-size: 14px;
   min-width: 160px;
   margin-top: -1px;
   padding: 5px 0;

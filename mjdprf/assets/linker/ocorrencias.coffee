@@ -1,7 +1,11 @@
 # autocompletar da busca
 $('#search').typeahead 
   name: 'rodovias'
-  local: ['br060', 'br080', 'br100'] 
+  #local: ['abc', 'def', 'ghi']
+  valueKey: 'nome'
+  remote: '/rodovias/rodovia/?termo=%QUERY'
+  template: '<p><strong>{{nome}}</strong> – <small>{{localidade}}</small></p>'
+  engine: Hogan
 
 # popover do menu de navegacao
 $('ul.nav li a').each ()->
