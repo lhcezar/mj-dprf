@@ -12,7 +12,8 @@
     "jade": "~0.35.0",
     "sails-mongo": "~0.9.4",
     "coffee-script": "~1.6.3",
-    "sails-postgresql": "~0.9.4"
+    "sails-postgresql": "~0.9.4",
+    "async": "~0.2.9"
   },
   "scripts": {
     "start": "node app.js",
@@ -23,6 +24,7 @@
   "author": "",
   "license": "",
   "devDependencies": {
-    "grunt-contrib-coffee": "~0.7.0"
+    "grunt-contrib-coffee": "~0.7.0",
+    "async": "~0.2.9"
   }
 }

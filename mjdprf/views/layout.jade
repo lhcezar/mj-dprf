@@ -56,16 +56,17 @@ html
             li
               a(href="#", "data-container"="body", "data-toggle"="popover", "data-placement"="bottom", title "data-content"="Responsáveis pelo desenvolvimento, origem dos dados e repositórios podem ser visualizados a partir deste link", "data-original-title"="Informações sobre o site'") #{i18n("Sobre")}
             li
-              a(href="Mapa") #{i18n("Desafio")}
+              a("data-toggle"="modal", "data-target"="#modal", href="/desafio/index") #{i18n("Desafio")}
 
     .container
       block body
       include rodape
- 
+      #modal.modal.fade(tabindex="-1",role="dialog", "aria-labelledby"="modalabel", "aria-hidden"="true" )
     script(type="text/javascript", src="/vendor/bootstrap/js/bootstrap.min.js")
     script(type="text/javascript", src="/vendor/typeahead.min.js")
     // A few key dependencies, linked in order
     // SCRIPTS
     script(type="text/javascript", src="/linker/js/foo.js")
     script(type="text/javascript", src="/linker/js/ocorrencias.js")
+    script(type="text/javascript", src="/linker/js/quiz.js")
     // SCRIPTS END
