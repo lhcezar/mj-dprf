@@ -1,0 +1,38 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+
+      //link(href="/vendor/slickquiz/css/reset.css", media="screen", rel="stylesheet" type="text/css")
+      link(href="/vendor/slickquiz/css/slickQuiz.css", media="screen", rel="stylesheet" type="text/css")
+      //link(href="/vendor/slickquiz/css/master.css", media="screen", rel="stylesheet" type="text/css")
+      button.close(type="button", "data-dismiss"="modal", "aria-hidden"="true") &times;
+      h4.modal-title Desafio
+
+    #slickQuiz.modal-body
+      h1.quizName
+      .quizArea
+        .quizHeader
+          a.btn.btn-default.startQuiz(href="#") Iniciar teste
+      .quizResults
+        h3.quizScore 
+          span Pontos: 
+        h3.quizLevel
+          strong Ranking:
+          span
+        .quizResultCopy
+    //script(src="/vendor/slickquiz/js/slickQuiz-config.js")
+    //script(type="text/javascript", src="/linker/js/quiz.js")
+    script(src="/vendor/slickquiz/js/slickQuiz.js")
+    :coffee
+      jq = $.ajax('/desafio/quiz').done (data)->
+        options = 
+          checkAnswerText: "Conferir a resposta"
+          nextQuestionText: "Próxima questão"
+          backButtonText: "Retornar"
+          tryAgainText: "Tentar novamente"
+          numberOfQuestions: 5
+          randomSort: true
+          json: data
+
+        $('#slickQuiz').slickQuiz options
+
