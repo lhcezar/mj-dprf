@@ -3,7 +3,6 @@
     .modal-header
 
       //link(href="/vendor/slickquiz/css/reset.css", media="screen", rel="stylesheet" type="text/css")
-      link(href="/vendor/slickquiz/css/slickQuiz.css", media="screen", rel="stylesheet" type="text/css")
       //link(href="/vendor/slickquiz/css/master.css", media="screen", rel="stylesheet" type="text/css")
       button.close(type="button", "data-dismiss"="modal", "aria-hidden"="true") &times;
       h4.modal-title Desafio
@@ -11,8 +10,12 @@
     #slickQuiz.modal-body
       h1.quizName
       .quizArea
-        .quizHeader
-          a.btn.btn-default.startQuiz(href="#") Iniciar teste
+        a("data-toggle"="collapse", "data-target"="#info", href="#info")[...]
+        #info.collapse.in
+          .quizHeader
+            .panel-body
+              p
+                a.btn.btn-default.startQuiz(href="#") Iniciar desafio
       .quizResults
         h3.quizScore 
           span Pontos: 
@@ -20,8 +23,6 @@
           strong Ranking:
           span
         .quizResultCopy
-    //script(src="/vendor/slickquiz/js/slickQuiz-config.js")
-    //script(type="text/javascript", src="/linker/js/quiz.js")
     script(src="/vendor/slickquiz/js/slickQuiz.js")
     :coffee
       jq = $.ajax('/desafio/quiz').done (data)->
