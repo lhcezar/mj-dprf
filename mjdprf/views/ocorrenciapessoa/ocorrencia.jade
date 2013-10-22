@@ -1,6 +1,9 @@
 extends ../layout
 block body
   script(src="http://twitter.github.com/hogan.js/builds/2.0.0/hogan-2.0.0.js")
+  script(src="/vendor/heatmap/src/heatmap.js")
+  script(src="/vendor/heatmap/src/heatmap-leaflet.js")
+  script(src="/vendor/heatmap/src/QuadTree.js")
 
   .jumbotron
     .row
@@ -16,6 +19,8 @@ block body
             //button#busca.btn.btn-default(type="button") buscar
 
       //#map(style="height:280px;")
+  .row
+    #map.col-sm-6.col-sm-offset-2(style="height:480px")
 
     :coffee
 
@@ -33,28 +38,40 @@ block body
           fillColor: ufcor f.properties.SIGLA
         }
 
-      w =
-        limit: 20
-        where:
-          lbrlongitude:
-            "not": 'null'
-          lbruf: "DF"
+      heatmap = L.TileLayer.heatMap 
+        radius: value: 10, absolute: false
+        opacity: 0.8
+        gradient:
+          0.45: "rgb(0,0,255)"
+          0.55: "rgb(0,255,255)"
+          0.65: "rgb(0,255,0)"
+          0.95: "yellow"
+          1.0: "rgb(255,0,0)"
+
+      testData = 
+        max: 46
+        data: [{lat: -15.5363, lon:-40.044, value: 0.50},{lat: 33.5608, lon:-117.24, value: 1}]
+      $.get
+
+      $.ajax('/local/acidentes/').done (data)->
+        heatmap.setData(data)
 
       osmurl="http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       osmcloud = "http://{s}.tile.cloudmade.com/#{apikey}/997/256/{z}/{x}/{y}.png"
       
+      osm = L.tileLayer(osmurl)
       # registro no cloudmade
       apikey = "7e01a6d95d0d448f9b41e9820fe0be3d"
 
-      map = L.map('map').setView [-15.94, -47.84], 4
-
-      mapProps = 
+      config = 
         attribution: "Map data: OpenStreetMap"
-        minZoom: 1
-        maxZoon: 12
+        center: new L.LatLng(-15.707663,-49.847717)
+        zoom: 4
+        layers: [osm, heatmap]
 
-      # L.tileLayer(osmurl, mapProps).addTo(map)
-      L.geoJson(regioes, style: formata_regiao).addTo(map)
+      map = new L.map('map', config)
+
+      #L.geoJson(regioes, style: formata_regiao).addTo(map)
   
-      $.post '/local/find', w, (r)->
-        L.marker([i.lbrlatitude.trim(), i.lbrlongitude.trim()]).addTo map for i in r
+      #$.post '/local/find', w, (r)->
+      #  L.marker([i.lbrlatitude.trim(), i.lbrlongitude.trim()]).addTo map for i in r

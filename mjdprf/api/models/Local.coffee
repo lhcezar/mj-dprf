@@ -8,4 +8,6 @@ module.exports =
     lbrlongitude: 'string'
     lbrpnvid: 'integer'
     lbratualiza: 'string'
+    toJSON: ()->
+      local = @toObject()
 
