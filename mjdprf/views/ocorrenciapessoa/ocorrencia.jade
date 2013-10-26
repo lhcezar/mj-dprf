@@ -17,30 +17,18 @@ block body
             button#busca.btn.btn-default(type="button")
               i.glyphicon.glyphicon-search
             //button#busca.btn.btn-default(type="button") buscar
-
       //#map(style="height:280px;")
+  .row
+    #msgloading.col-sm-6.col-sm-offset-2
+    #semanas.col-sm-6
   .row
     #map.col-sm-6.col-sm-offset-2(style="height:480px")
 
     :coffee
 
-      ufcor = (sg)->
-        sigla =
-          'NE': '#ddee66'
-          'SE': '#f6f6f6'
-        return sigla[sg]
-
-      formata_regiao = (f)->
-        return {
-          dashArray: '3'
-          weight: 2
-          color: 'gray'
-          fillColor: ufcor f.properties.SIGLA
-        }
-
       heatmap = L.TileLayer.heatMap 
-        radius: value: 10, absolute: false
-        opacity: 0.8
+        radius: value: 5, absolute: false
+        opacity: 0.4
         gradient:
           0.45: "rgb(0,0,255)"
           0.55: "rgb(0,255,255)"
@@ -48,20 +36,15 @@ block body
           0.95: "yellow"
           1.0: "rgb(255,0,0)"
 
-      testData = 
-        max: 46
-        data: [{lat: -15.5363, lon:-40.044, value: 0.50},{lat: 33.5608, lon:-117.24, value: 1}]
-      $.get
-
       $.ajax('/local/acidentes/').done (data)->
         heatmap.setData(data)
 
       osmurl="http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      # registro no cloudmade
+      apikey = "7e01a6d95d0d448f9b41e9820fe0be3d"
       osmcloud = "http://{s}.tile.cloudmade.com/#{apikey}/997/256/{z}/{x}/{y}.png"
       
       osm = L.tileLayer(osmurl)
-      # registro no cloudmade
-      apikey = "7e01a6d95d0d448f9b41e9820fe0be3d"
 
       config = 
         attribution: "Map data: OpenStreetMap"
@@ -70,8 +53,3 @@ block body
         layers: [osm, heatmap]
 
       map = new L.map('map', config)
-
-      #L.geoJson(regioes, style: formata_regiao).addTo(map)
-  
-      #$.post '/local/find', w, (r)->
-      #  L.marker([i.lbrlatitude.trim(), i.lbrlongitude.trim()]).addTo map for i in r

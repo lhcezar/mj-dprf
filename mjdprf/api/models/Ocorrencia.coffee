@@ -3,7 +3,7 @@ module.exports =
     ocoid: 'integer'
     ocolocal: 'integer'
     ocostatus: 'string'
-    ocomunicipio: 'integer'
+    ocomunicipio: 'string'
     ocosentido: 'integer'
     ocodataocorrencia: 'datetime'
     ocodataregistro: 'datetime'

@@ -7,6 +7,23 @@ $('#search').typeahead
   template: '<p><strong>{{nome}}</strong> – <small>{{localidade}}</small></p>'
   engine: Hogan
 
+$(document).ajaxStart ()->
+  $('#msgloading').text('carregando...')
+
+$(document).ajaxStop ()->
+  $('#msgloading').text 'carregado'
+
+busca_semanas = ()->
+  $.ajax('/acidente/semana').done (data)->
+    console.log data.rows
+
+    for key, value of data.rows
+
+      $("<span>#{value.semana}</span><div id='#{value.semana}' class='progress'>").appendTo('#semanas')
+      $("<div class='progress-bar progress-bar-warning' role='progressbar' aria-valuenow='20' aria-valuemin='0' aria-valuemax='100' style='width: #{value.percent}%'>").appendTo("##{value.semana}").append("<span>#{value.percent}%</span>")
+
+busca_semanas()
+
 # popover do menu de navegacao
 $('ul.nav li a').each ()->
   $(this).on 'mouseenter', ()->
